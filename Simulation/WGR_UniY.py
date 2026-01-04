@@ -105,7 +105,7 @@ def main():
         
         # To calcualte the value of criterion of selecting m
         mean_sd_result = L1L2_MSE_mean_sd_G(G = trained_G,  test_size = args.train, noise_dim=args.noise_dim, Xdim=args.Xdim, 
-                                    batch_size=100,  model_type=args.model, loader_dataset = loader_train )
+                                    batch_size=100,  model_type=args.model, loader_dataset = loader_test )
         
         # Calculate the MSE of conditional quantiles at different levels.
         test_G_quantile = MSE_quantile_G_uniY(G = trained_G, loader_dataset = loader_test , noise_dim=args.noise_dim, Xdim=args.Xdim,
