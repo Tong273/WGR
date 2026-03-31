@@ -69,7 +69,7 @@ def L1L2_MSE_mean_sd_G(G, loader_dataset, noise_dim, Xdim, test_size, batch_size
             # Set conditional mean and standard deviation based on model type
             if model_type == "M1":
                 y_test = x[:,0]**2 + torch.exp(x[:,1]+x[:,2]/3) + x[:,3] - x[:,4]
-                y_sd = torch.sqrt(0.5 + x[:,1]**2/2 + x[:,4]**2/2)
+                y_sd = 0.5 + x[:,1]**2/2 + x[:,4]**2/2
             elif model_type == "M2":
                 beta = torch.tensor([1, 1, -1, -1, 1] + [0]*(Xdim-5)).float()
                 x_si = x @ beta
@@ -160,7 +160,7 @@ def MSE_quantile_G_uniY(G, loader_dataset,  noise_dim, Xdim, test_size, batch_si
             # Calculate true quantiles based on model type
             if model_type == "M1":
                 A = x[:,0]**2 + torch.exp(x[:,1]+x[:,2]/3) + x[:,3] - x[:,4]
-                B = torch.sqrt(0.5 + x[:,1]**2/2 + x[:,4]**2/2)
+                B = 0.5 + x[:,1]**2/2 + x[:,4]**2/2
                 true_quantiles = {q: norm.ppf(q, A, B) for q in quantiles}
                 
             elif model_type == "M2":
